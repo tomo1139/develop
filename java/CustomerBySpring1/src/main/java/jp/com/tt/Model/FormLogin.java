@@ -1,4 +1,4 @@
-package jp.com.tt.Model;
+package jp.com.tt.model;
 
 public class FormLogin {
 	private String name;

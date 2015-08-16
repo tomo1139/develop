@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.com.tt.Model.FormLogin;
+import jp.com.tt.model.FormLogin;
 
 @Controller
 public class CustomerDetail {
