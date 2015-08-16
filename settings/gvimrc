@@ -58,3 +58,4 @@ set listchars=tab:>.,trail:~
 set expandtab
 
 map #2 :source open_files.vim<ENTER>
+autocmd QuickFixCmdPost *grep* cwindow
