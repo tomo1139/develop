@@ -1,0 +1,612 @@
+body {
+	margin: 0;
+}
+
+header {
+	top: 0px;
+	left: 0px;
+	background-color: #dddddd;
+	width: 100%;
+	height: 50px;
+}
+
+#systemname {
+	font-size:25px;
+	padding-top: 8px;
+	padding-left: 25px;
+}
+
+.todayVisitLink {
+	display: block;
+	float: left;
+	width: 180px;
+	height: 39px;
+	text-decoration: none;
+	background-color: #bbbbbb;
+    text-align: center;
+    padding-top: 15px;
+    margin-top: -50px;
+    margin-left: 250px;
+	color: #000000;
+	font-size: 20px;
+}
+
+.todayVisitLink:hover {
+	color: #ffffff;
+	background-color: #00C5CD;
+}
+
+a:link { color: #000000; }
+a:visited { color: #000000; }
+
+.searchPrintLink {
+	display: block;
+	float: left;
+	width: 250px;
+	height: 39px;
+	text-decoration: none;
+	background-color: #bbbbbb;
+    text-align: center;
+    padding-top: 15px;
+    margin-top: -50px;
+    margin-left: 0px;
+    font-size: 20px;
+}
+
+.searchPrintLink:hover {
+	color: #ffffff;
+	background-color: #00C5CD;
+}
+
+.loginLink {
+	display: block;
+	float: right;
+	width: 150px;
+	height: 39px;
+	text-decoration: none;
+	background-color: #bbbbbb;
+    text-align: center;
+    padding-top: 15px;
+    margin-top: -50px;
+    margin-left: 0px;
+    font-size: 20px;
+}
+
+.loginLink:hover {
+	color: #ffffff;
+	background-color: #00C5CD;
+}
+
+
+#loginform {
+	width:450px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    text-align: center;
+    padding-right: 20px;
+}
+
+#nameform {
+    font-size: 20px;
+}
+
+input.nameformclass {
+	height: 20px;
+	padding-top: 3px;
+}
+
+.selectclass {
+	padding-top: 3px;
+}
+
+#passform {
+    font-size: 20px;
+	margin-top: 20px;
+}
+
+input.passformclass {
+	height: 20px;
+	padding-top: 3px;
+}
+
+.submitButton {
+  background: #3498db;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  margin-top: 30px;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+}
+
+.submitButton:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+#errorMsg {
+	margin-top: 30px;
+	color: #ff0000;
+	text-align: center;
+}
+
+#todayVisitListPrintText {
+	font-size: 30px;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+#detailId {
+	width: 200px;
+	font-size: 30px;
+	margin-left: 30px;
+	margin-top: 20px;
+	color: #4169D1;
+	float: left;
+}
+
+#detailName {
+	font-size: 30px;
+	margin-left: 30px;
+	margin-top: 20px;
+	float: left;
+}
+
+#detailNameSama {
+	font-size: 20px;
+	margin-left: 30px;
+	margin-top: 32px;
+}
+
+#detailItem {
+	width: 900px;
+	height: 50px;
+	text-align: center;
+	align: center;
+	margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+	background-color: #eeeeee;
+}
+
+#detailItemText {
+	text-align: left;
+	font-size:20px;
+	padding-top: 9px;
+	padding-left: 100px;
+	float: left;
+}
+
+#detailItemData {
+	text-align: right;
+	font-size:20px;
+	padding-top: 9px;
+	padding-right: 300px;
+}
+
+#registItemBase {
+	width: 900px;
+	height: 50px;
+	text-align: center;
+	align: center;
+    margin-left: auto;
+    margin-right: auto;
+	background-color: #eeeeee;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+
+#registItemText {
+	width: 200px;
+	display: block;
+	font-size:20px;
+	padding-top: 12px;
+	float: left;
+	text-align: left;
+	padding-left: 50px;
+	color: #4169D1;
+}
+
+#registItemText2 {
+	width: 200px;
+	display: block;
+	font-size:20px;
+	padding-top: 12px;
+	float: left;
+	text-align: left;
+}
+
+#registItemText3 {
+	width: 420px;
+	display: block;
+	font-size:20px;
+	padding-top: 12px;
+	float: left;
+	text-align: right;
+	margin-right: 30px;
+}
+
+
+#detailItem2 {
+	width: 900px;
+	height: 50px;
+	text-align: center;
+	align: center;
+    margin-left: auto;
+    margin-right: auto;
+	background-color: #eeeeee;
+	margin-bottom: 5px;
+}
+
+#detailItemText2 {
+	width: 200px;
+	display: block;
+	font-size:20px;
+	padding-top: 12px;
+	float: left;
+	text-align: right;
+}
+
+#detailItemData2 {
+	float: left;
+	display: block;
+	width: 670px;
+	font-size:20px;
+	padding-top: 12px;
+	text-align: left;
+	padding-left: 30px;
+}
+
+#detailContractContents {
+	width: 900px;
+	text-align: left;
+	font-size:25px;
+	padding-top: 9px;
+	height: 50px;
+	background-color: #00C5CD;
+
+	align: center;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 15px;
+}
+
+#detailContractContentsText {
+	padding-left: 50px;
+	padding-top: 3px;
+}
+
+
+hr {
+	width: 90%;
+	text-align: center;
+	align: center;
+	margin-top: 22px;
+	height: 1px;
+	border: none;
+	border-top: 1px #aaaaaa solid;
+}
+
+hr.hrsub {
+	width: 1000px;
+	height: 1px;
+	border: none;
+	border-top: 1px #aaaaaa solid;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#searchListPrintMain {
+	width: 1100px;
+	text-align: center;
+	align: center;
+	margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#todayVisitListPrintMain {
+	width: 1100px;
+	text-align: center;
+	align: center;
+	margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#todayVisitDeleteBtn {
+	width: 100px;
+	height: 70px;
+	display: block;
+	float: left;
+	margin-bottom:10px;
+}
+
+#searchVisitCustomerInfo {
+	width: 1000px;
+	height: 70px;
+	text-align: left;
+	display: block;
+	float:left;
+	margin-bottom:10px;
+	background-color: #dddddd;
+}
+
+#searchVisitCustomerInfo:hover {
+	background-color: #00C5CD;
+}
+
+#todayVisitCustomerInfo {
+	width: 900px;
+	height: 70px;
+	text-align: left;
+	display: block;
+	float:left;
+	margin-bottom:10px;
+	background-color: #dddddd;
+}
+
+#todayVisitCustomerInfo:hover {
+	background-color: #00C5CD;
+}
+
+
+#todayVisitRecordBtn {
+	width: 100px;
+	height: 70px;
+	display: block;
+	float: left;
+	margin-bottom:10px;
+}
+
+#todayVisitContents {
+	clear: both;
+}
+
+#todayId {
+	color: #4169D1;
+	display: block;
+	width: 150px;
+	font-size:25px;
+	padding-top: 19px;
+	padding-left: 10px;
+}
+
+.fa-icon {
+	padding-right: 5px;
+}
+
+#todayName {
+	font-size:25px;
+	margin-left:160px;
+	margin-top: -48px;
+}
+
+.TocustomerDetail {
+	display: block;
+	text-decoration: none;
+}
+
+#todayAddress {
+	margin-left:160px;
+	font-size:13px;
+	padding-bottom: 20px;
+}
+
+.deleteBtn {
+	margin-top: 3px;
+	
+}
+
+.fa-color:before {
+	color: #ffffff;
+	background-color: #000000;
+	text-decoration: none;
+	border: none;
+	border-width: 0;
+}
+
+.fa-color:hover {
+	color: #000000;
+	background-color: #4169D1;
+}
+
+.searchVisitRecordBtnCls {
+	width: 60px;
+	height: 60px;
+	padding-top: 5px;
+}
+
+.todayVisitRecordBtnCls {
+	width: 60px;
+	height: 60px;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+.todayVisitRecordBtnCls:focus {
+	outline: none;
+}
+
+.searchVisitRecordBtnCls:focus {
+	outline: none;
+}
+
+.todayVisitDelBtnCls {
+	width: 60px;
+	height: 60px;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+.todayVisitDelBtnCls:focus {
+	outline: none;
+}
+
+#todayVisitPullDownBtn {
+	text-align: right;
+	padding-right: 100px;
+	margin-top: -80px;
+}
+
+.todayVisitPullDownBtnCls:focus {
+	outline: none;
+}
+
+#searchFormMain {
+	width: 400px;
+	height: 175px;
+	text-align: center;
+	display: block;
+	margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#searchInfoText {
+	text-align: right;
+	float: left;
+	font-size: 18px;
+	width: 150px;
+	margin-top: 3px;
+}
+
+#searchInfoForm {
+	float:left;
+	font-size: 18px;
+	width: 250px;
+}
+
+#searchInfoForm:after {
+	clear: both;
+}
+
+#searchButton {
+	
+}
+
+.SearchButton {
+  background: #3498db;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  margin-top: 15px;
+  margin-right: 40px;
+  width: 80px;
+  height: 30px;
+}
+
+.SearchButton:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+#registContractFormMain {
+	width: 900px;
+	height: 400px;
+	background-color: #eeeeee;
+	margin-bottom: 50px;
+}
+
+#registContractFormText {
+	width: 350px;
+	height: 280px;
+	float: left;
+	text-align: right;
+	padding-right: 15px;
+	font-size:25px;
+	padding-top: 25px;
+}
+
+#registContractForm {
+	width: 530px;
+	height: 280px;
+	float: left;
+	padding-top: 25px;
+}
+
+#registContractForm:after {
+	clear: both;
+}
+
+#registContractText {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#registContractInput {
+	padding-top: 2px;
+	padding-bottom: 8px;
+}
+
+textarea {
+	width: 200px;
+	height: 80px;
+	padding-top: 3px;
+	max-width: 300px;
+	max-height: 100px;
+}
+
+
+.registButton {
+  background: #3498db;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  margin-top: 30px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  margin-left: 320px;
+  margin-top: 35px;
+}
+
+.registButton:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+.clearButton {
+  background: #3498db;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  margin-top: 30px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 60px;
+}
+
+.clearButton:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+#blankBottom {
+	width: 900px;
+	height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+

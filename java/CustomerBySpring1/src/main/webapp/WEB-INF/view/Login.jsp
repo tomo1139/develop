@@ -7,28 +7,37 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Login</title>
+		<link href="<c:url value="/css/common.css" />" rel="stylesheet">
+		<title>顧客管理システム</title>
 	</head> 
 	<body>
-		<h1>ログイン画面</h1>
+		<header>
+			<div id="systemname">顧客管理アプリ</div>
+		</header>
 		
-		<form:form modelAttribute="formLogin">
-			name<form:input path="name" placeholder="input name"/><br>
-			pass<form:password path="pass" placeholder="input password"/><br>
-			<input type="submit">
-		</form:form>
+		<div id="loginform">
+			<form:form modelAttribute="formLogin">
+				<div id="nameform">
+				&nbsp&nbsp&nbsp&nbspID&nbsp<form:input path="name" placeholder="name" cssClass="nameformclass"/>
+				</div>
+
+				<div id="passform">
+				PASS&nbsp<form:password path="pass" placeholder="password" cssClass="passformclass"/>
+				</div>
+
+				<c:if test="${loginErrorMsg != null}" >
+					<div id="errorMsg">
+						<c:out value="${loginErrorMsg}"/>
+					</div>
+				</c:if>
+
+				<input type="submit" class="submitButton" value="login">
+			</form:form>
+		</div>
 		
-		<c:if test="${userlist != null}" >
-		<table border="1">
-		<tr><th>ID</th><th>name</th><th>pass</th></tr>
-		<c:forEach var="obj" items="${userlist}" varStatus="status">
-			<tr>
-			<td><c:out value="${obj.id}"/></td>
-			<td><c:out value="${obj.name}"/></td>
-			<td><c:out value="${obj.pass}"/></td>
-			</tr>
-		</c:forEach>
-		</table>
-		</c:if>
+		<!--
+		<c:import url="showDataBaseAll.jsp"/>
+		-->
+
 	</body>
 </html>

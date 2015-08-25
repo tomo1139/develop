@@ -20,35 +20,35 @@ public class UserDaoImpl implements UserDao<User> {
 		return list;
 	}
 
-	public void add(User user) {
+	public void add(User data) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		transaction.begin();
-		manager.persist(user);
+		manager.persist(data);
 		transaction.commit();
 		manager.close();
 	}
 
 	public User findById(int id) {
 		EntityManager manager = factory.createEntityManager();
-		User user = (User)manager.createQuery("from User where id = " + id).getSingleResult();
-		return user;
+		User data = (User)manager.createQuery("from User where id = " + id).getSingleResult();
+		return data;
 	}
 
-	public void update(User user) {
+	public void update(User data) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		transaction.begin();
-		manager.merge(user);
+		manager.merge(data);
 		transaction.commit();
 		manager.close();
 	}
 
-	public void delete(User user) {
+	public void delete(User data) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		transaction.begin();
-		User entity = manager.merge(user);
+		User entity = manager.merge(data);
 		manager.remove(entity);
 		transaction.commit();
 		manager.close();
