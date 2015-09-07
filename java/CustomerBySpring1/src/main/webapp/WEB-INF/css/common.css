@@ -1,34 +1,113 @@
-body {
-	margin: 0;
+@charset "utf-8";
+/* ===================================================================
+CSS information
+
+ File Name  : default.css
+ Author     : MIYA
+ Style Info : ブラウザスタイルのリセットと基本設定
+=================================================================== */
+
+/* ----------------------- Browser Default Initialization */
+html {
+	overflow-y: scroll;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td	{
+	margin: 0;	padding: 0;
+}
+address, caption, cite, code, dfn, em, strong, th, var	{
+	font-style: normal;
+}
+table	{
+	border-collapse: collapse;	border-spacing: 0;
+}
+caption, th	{
+	text-align: left;
+}
+q:before ,q:after	{
+	content: '';
+}
+object, embed	{
+	vertical-align: top;
+}
+hr, legend	{
+	display: none;
+}
+h1, h2, h3, h4, h5, h6	{
+	font-size: 100%;
+}
+img, abbr, acronym, fieldset	{
+	border: 0;
+	vertical-align: bottom;
+}
+li	{
+	list-style-type: none;
 }
 
-header {
+/* ----------------------- Basic Style */
+/* ------------ Font Style */
+body {
+	font-family: verdana,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+	font-size: 75%;
+	line-height: 150%;
+}
+html>/**/body {
+	font-size: 12px;
+}
+* + html body {
+	font-family: "メイリオ","Meiryo";
+}
+
+body {
+	margin: 0;
+	min-width: 1150px;
+	font-size: 25px;
+}
+
+#systemnameSub {
+
+	display: block;
+	float: left;
+	width: 180px;
+	height: 35px;
+	text-decoration: none;
+	background-color: #dddddd;
+    text-align: center;
+	color: #000000;
+	position: absolute;
+	top:0px;
+	left: 20px;
+	font-size:25px;
+	padding-top: 15px;
+}
+
+#systemname {
 	top: 0px;
 	left: 0px;
 	background-color: #dddddd;
 	width: 100%;
-	height: 50px;
+	height: 35px;
+
+	font-size:25px;
+	padding-top: 15px;
 }
 
-#systemname {
-	font-size:25px;
-	padding-top: 8px;
-	padding-left: 25px;
+header {
 }
 
 .todayVisitLink {
 	display: block;
 	float: left;
 	width: 180px;
-	height: 39px;
+	height: 37px;
 	text-decoration: none;
 	background-color: #bbbbbb;
     text-align: center;
-    padding-top: 15px;
-    margin-top: -50px;
-    margin-left: 250px;
 	color: #000000;
-	font-size: 20px;
+	position: absolute;
+	top:0px;
+	left: 220px;
+	font-size:20px;
+	padding-top: 13px;
 }
 
 .todayVisitLink:hover {
@@ -39,18 +118,65 @@ header {
 a:link { color: #000000; }
 a:visited { color: #000000; }
 
+#header_right {
+	height: 100%;
+	display: block;
+	float: right;
+	margin-top: -50px;
+}
+
+.changePassLink {
+	display: block;
+	float: right;
+	width: 180px;
+	height: 37px;
+	text-decoration: none;
+	background-color: #bbbbbb;
+    text-align: center;
+    padding-top: 13px;
+    font-size: 20px;
+}
+
+.changePassLink:hover {
+	color: #ffffff;
+	background-color: #00C5CD;
+}
+
+.addCustomerLink {
+	display: block;
+	float: left;
+	width: 190px;
+	height: 37px;
+	text-decoration: none;
+	background-color: #bbbbbb;
+    text-align: center;
+    font-size: 20px;
+    vertical-align: middle;
+    position: absolute;
+    top: 0px;
+    left: 650px;
+    padding-top: 13px;
+}
+
+.addCustomerLink:hover {
+	color: #ffffff;
+	background-color: #00C5CD;
+}
+
 .searchPrintLink {
 	display: block;
 	float: left;
 	width: 250px;
-	height: 39px;
+	height: 37px;
 	text-decoration: none;
 	background-color: #bbbbbb;
     text-align: center;
-    padding-top: 15px;
-    margin-top: -50px;
-    margin-left: 0px;
     font-size: 20px;
+    vertical-align: middle;
+    position: absolute;
+    top: 0px;
+    left: 400px;
+    padding-top: 13px;
 }
 
 .searchPrintLink:hover {
@@ -61,14 +187,12 @@ a:visited { color: #000000; }
 .loginLink {
 	display: block;
 	float: right;
-	width: 150px;
-	height: 39px;
+	width: 130px;
+	height: 37px;
 	text-decoration: none;
 	background-color: #bbbbbb;
     text-align: center;
-    padding-top: 15px;
-    margin-top: -50px;
-    margin-left: 0px;
+    padding-top: 13px;
     font-size: 20px;
 }
 
@@ -82,7 +206,7 @@ a:visited { color: #000000; }
 	width:450px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 150px;
+    margin-top: 100px;
     text-align: center;
     padding-right: 20px;
 }
@@ -91,13 +215,19 @@ a:visited { color: #000000; }
     font-size: 20px;
 }
 
-input.nameformclass {
-	height: 20px;
-	padding-top: 3px;
+#changePassOldPass {
+    font-size: 25px;
+    margin-left: -50px;
 }
 
 .selectclass {
 	padding-top: 3px;
+}
+
+#changePassNewPass {
+    font-size: 25px;
+	margin-top: 20px;
+	margin-left: -57px;
 }
 
 #passform {
@@ -105,24 +235,42 @@ input.nameformclass {
 	margin-top: 20px;
 }
 
+#passform2 {
+    font-size: 25px;
+	margin-top: 20px;
+	margin-left: -105px;
+}
+
+input.nameformclass {
+	height: 20px;
+	padding-top: 3px;
+	margin-top: 5px;
+}
+
 input.passformclass {
 	height: 20px;
 	padding-top: 3px;
 }
 
+input.passformclass2 {
+	height: 20px;
+	padding-top: 3px;
+}
+
 .submitButton {
-  background: #3498db;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 13px;
-  text-decoration: none;
-  margin-top: 30px;
-  width: 60px;
-  height: 30px;
-  text-align: center;
+	background: #3498db;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 13px;
+	text-decoration: none;
+	margin-top: 10px;
+	width: 60px;
+	height: 30px;
+	text-align: center;
+	outline: none;
 }
 
 .submitButton:hover {
@@ -130,23 +278,118 @@ input.passformclass {
   text-decoration: none;
 }
 
-#errorMsg {
-	margin-top: 30px;
+.newUserButton {
+	background: #3498db;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 13px;
+	text-decoration: none;
+	margin-top: 0px;
+	width: 70px;
+	height: 30px;
+	text-align: center;
+	outline: none;
+}
+
+.newUserButton:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+#errorChangePassMsg {
 	color: #ff0000;
 	text-align: center;
+	font-color: #ff0000;
+	margin-bottom: 10px;
+	font-size: 15px;
+}
+
+#errorMsg {
+	color: #ff0000;
+	text-align: center;
+	font-color: #ff0000;
+	margin-bottom: 10px;
+	font-size: 15px;
+}
+
+#successMsg {
+	margin-top: 10px;
+	color: #0000ff;
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 15px;
+}
+
+#idText {
+	float: left;
+    clear: both;
+    width: 200px;
+    text-align: right;
+    padding-right: 0px;
+    margin-right: 10px;
+    padding-top: 5px;
+}
+
+#customerIdText {
+	float: left;
+	text-align: left;
+	font-size: 15px;
+	padding-top: 7px;
+}
+
+#idForm {
+	float: left;
+	text-align: left;
+	width: 30%;
+}
+
+#textMargin1 {
+	margin-bottom: 0px;
+	font-size: 25px;
+	height: 35px;
+
+	text-align: center;
+	align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#textMargin {
+	margin-bottom: 0px;
+	font-size: 25px;
+}
+
+#addCustomerTitle {
+	font-size: 30px;
+	margin-left: 30px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding-bottom: 15px;
+}
+
+#errorPrintText {
+	font-size: 30px;
+	margin-left: 30px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding-bottom: 15px;
 }
 
 #todayVisitListPrintText {
 	font-size: 30px;
 	margin-left: 30px;
 	margin-top: 20px;
+	margin-bottom: 10px;
+	padding-bottom: 15px;
 }
 
 #detailId {
-	width: 200px;
 	font-size: 30px;
-	margin-left: 30px;
-	margin-top: 20px;
+	margin-left: 80px;
+	margin-top: 15px;
 	color: #4169D1;
 	float: left;
 }
@@ -155,13 +398,14 @@ input.passformclass {
 	font-size: 30px;
 	margin-left: 30px;
 	margin-top: 20px;
+	margin-right: 10px;
 	float: left;
 }
 
 #detailNameSama {
 	font-size: 20px;
-	margin-left: 30px;
-	margin-top: 32px;
+	margin-top: 25px;
+	padding-left: 10px;
 }
 
 #detailItem {
@@ -176,18 +420,19 @@ input.passformclass {
 }
 
 #detailItemText {
-	text-align: left;
-	font-size:20px;
-	padding-top: 9px;
-	padding-left: 100px;
+	text-align: right;
+	font-size:25px;
+	padding-top: 15px;
+	padding-left: 120px;
 	float: left;
 }
 
 #detailItemData {
-	text-align: right;
-	font-size:20px;
-	padding-top: 9px;
-	padding-right: 300px;
+	float: left;
+	text-align: left;
+	font-size:25px;
+	padding-top: 15px;
+	padding-left: 30px;
 }
 
 #registItemBase {
@@ -205,8 +450,8 @@ input.passformclass {
 #registItemText {
 	width: 200px;
 	display: block;
-	font-size:20px;
-	padding-top: 12px;
+	font-size:25px;
+	padding-top: 15px;
 	float: left;
 	text-align: left;
 	padding-left: 50px;
@@ -216,17 +461,17 @@ input.passformclass {
 #registItemText2 {
 	width: 200px;
 	display: block;
-	font-size:20px;
-	padding-top: 12px;
+	font-size:25px;
+	padding-top: 15px;
 	float: left;
 	text-align: left;
 }
 
 #registItemText3 {
-	width: 420px;
+	width: 400px;
 	display: block;
-	font-size:20px;
-	padding-top: 12px;
+	font-size: 25px;
+	padding-top: 15px;
 	float: left;
 	text-align: right;
 	margin-right: 30px;
@@ -244,11 +489,21 @@ input.passformclass {
 	margin-bottom: 5px;
 }
 
+#detailItem2Detail {
+	width: 900px;
+	text-align: center;
+	align: center;
+    margin-left: auto;
+    margin-right: auto;
+	background-color: #eeeeee;
+	margin-bottom: 5px;
+}
+
 #detailItemText2 {
 	width: 200px;
 	display: block;
 	font-size:20px;
-	padding-top: 12px;
+	padding-top: 15px;
 	float: left;
 	text-align: right;
 }
@@ -258,7 +513,7 @@ input.passformclass {
 	display: block;
 	width: 670px;
 	font-size:20px;
-	padding-top: 12px;
+	padding-top: 15px;
 	text-align: left;
 	padding-left: 30px;
 }
@@ -279,18 +534,41 @@ input.passformclass {
 
 #detailContractContentsText {
 	padding-left: 50px;
-	padding-top: 3px;
+	padding-top: 9px;
+	padding-bottom: 10px;
+}
+
+#hrSub {
+	width: 80%;
+	text-align: center;
+	align: center;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+	padding-bottom: 12px;
+}
+
+#hrCenter {
+	width: 90%;
+	text-align: center;
+	align: center;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
 }
 
 
 hr {
-	width: 90%;
+	width: 100%;
 	text-align: center;
 	align: center;
 	margin-top: 22px;
 	height: 1px;
 	border: none;
 	border-top: 1px #aaaaaa solid;
+	display: block;
+    clear: both;
+	display: inline-block;
 }
 
 hr.hrsub {
@@ -348,7 +626,6 @@ hr.hrsub {
 	text-align: left;
 	display: block;
 	float:left;
-	margin-bottom:10px;
 	background-color: #dddddd;
 }
 
@@ -370,33 +647,159 @@ hr.hrsub {
 }
 
 #todayId {
+	float: left;
 	color: #4169D1;
 	display: block;
 	width: 150px;
-	font-size:25px;
-	padding-top: 19px;
+	font-size:200%;
+	padding-top: 25px;
 	padding-left: 10px;
+}
+
+#oldPassErrorJS {
+	color: #ff0000;
+	margin-top: 15px;
+	font-size: 15px;
+}
+
+#newPassErrorJS {
+	color: #ff0000;
+	margin-top: 15px;
+	font-size: 15px;
+}
+
+#newPassErrorJS2 {
+	color: #ff0000;
+	margin-top: 15px;
+	font-size: 15px;
+}
+
+#countDetailCharNum {
+	font-size: 15px;
+}
+
+#registDetailErrMsgJS {
+	color: #ff0000;
+	margin-top: 5px;
+}
+
+#nameErrorLoginJS {
+    clear: both;
+	color: #ff0000;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-size: 15px;
+}
+
+#nameErrorJS {
+    clear: both;
+	color: #ff0000;
+	margin-bottom: 15px;
+	font-size: 15px;
+}
+
+#newUserIdText {
+	margin-bottom: 18px;
+	font-size: 25px;
+	margin-left: 30px;
+}
+
+#newUserPassText {
+	margin-bottom: 0px;
+	font-size: 25px;
+	margin-left: -10px;
+}
+
+#newUserConfirmPassText {
+	margin-bottom: 10px;
+	font-size: 25px;
+	margin-left: -120px;
+}
+
+#passErrorNewJS {
+	color: #ff0000;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-size: 15px;
+}
+
+#passErrorJS {
+	color: #ff0000;
+	margin-top: 15px;
+    clear: both;
+	font-size: 15px;
+}
+
+#passErrorJS2 {
+	color: #ff0000;
+	margin-top: 15px;
+	margin-bottom: 15px;
+    clear: both;
+	font-size: 15px;
+}
+
+.fa-iconError {
+	padding-right: 5px;
+	font-color: #ff0000;
 }
 
 .fa-icon {
 	padding-right: 5px;
 }
 
+.fa-google-icon {
+	color: #4169D1;
+	text-align: center;
+	margin-left: 10px;
+	padding-right: 5px;
+}
+
+#googleMapsLink {
+	float: left;
+}
+
+.mapclass {
+	width: 400px;
+}
+
+.fa-icon-user {
+	padding-right: 5px;
+}
+
+#negotiateDay {
+	float: right;
+	font-size:20px;
+	padding-top: 10px;
+	padding-bottom: 8px;
+}
+
+#negotiateName {
+	float: right;
+	font-size:20px;
+	padding-top: 10px;
+	padding-bottom: 8px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
 #todayName {
-	font-size:25px;
-	margin-left:160px;
-	margin-top: -48px;
+	float: left;
+	font-size:23px;
+	padding-top: 10px;
+	padding-bottom: 8px;
 }
 
 .TocustomerDetail {
-	display: block;
 	text-decoration: none;
 }
 
 #todayAddress {
 	margin-left:160px;
-	font-size:13px;
+	margin-bottom: -10px;
+	font-size:18px;
 	padding-bottom: 20px;
+	height: 3px;
+	clear: both;
 }
 
 .deleteBtn {
@@ -459,9 +862,19 @@ hr.hrsub {
 	outline: none;
 }
 
+#addCustomerFormMain {
+	width: 520px;
+	height: 195px;
+	text-align: center;
+	display: block;
+	margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #searchFormMain {
-	width: 400px;
-	height: 175px;
+	width: 520px;
+	height: 195px;
 	text-align: center;
 	display: block;
 	margin-top: 30px;
@@ -473,22 +886,40 @@ hr.hrsub {
 	text-align: right;
 	float: left;
 	font-size: 18px;
-	width: 150px;
-	margin-top: 3px;
+	width: 180px;
+	background-color: #ff0000;
 }
 
 #searchInfoForm {
 	float:left;
-	font-size: 18px;
-	width: 250px;
+	font-size: 25px;
+	width: 200px;
+	height: 200px;
+	text-align: left;
+	padding-left: 10px;
+	background-color: #0000ff;
 }
 
 #searchInfoForm:after {
 	clear: both;
 }
 
+.searchInfoFormClass {
+	margin-top: 0px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	width: 170px;
+	height: 15px;
+}
+
+#formMargin {
+	margin-top: 0px;
+	margin-bottom: 17px;
+	font-size: 25px;
+	height: 10%;
+}
+
 #searchButton {
-	
 }
 
 .SearchButton {
@@ -501,9 +932,9 @@ hr.hrsub {
   font-size: 13px;
   text-decoration: none;
   margin-top: 15px;
-  margin-right: 40px;
   width: 80px;
   height: 30px;
+  margin-bottom: 50px;
 }
 
 .SearchButton:hover {
@@ -542,6 +973,7 @@ hr.hrsub {
 #registContractText {
 	padding-top: 5px;
 	padding-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 #registContractInput {
@@ -551,14 +983,56 @@ hr.hrsub {
 
 textarea {
 	width: 200px;
-	height: 80px;
 	padding-top: 3px;
 	max-width: 300px;
 	max-height: 100px;
 }
 
 
-.registButton {
+.eraseButton {
+  background: #3498db;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  margin-top: 10px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#customerDetailBtn {
+  width: 900px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#editButton {
+  width: 900px;
+  text-align: center;
+}
+
+#eraseButton {
+  width: 430px;
+  text-align: left;
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.eraseButton:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+.registEditButton {
   background: #3498db;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -571,8 +1045,29 @@ textarea {
   width: 80px;
   height: 30px;
   text-align: center;
-  margin-left: 320px;
+  margin-left: 420px;
   margin-top: 35px;
+}
+
+.registEditButton:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+.registButton {
+  background: #3498db;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  margin-left: 320px;
+  margin-top: 5px;
 }
 
 .registButton:hover {
@@ -610,3 +1105,243 @@ textarea {
     margin-right: auto;
 }
 
+#pagingContent {
+	width: 1100px;
+	height: 60px;
+	margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pagingContent2 {
+	width: 900px;
+	height: 60px;
+	margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pagingText {
+	width: 300px;
+	font-size: 15px;
+	padding-top: 3px;
+	padding-left: 5px;
+    clear: both;
+}
+
+#pagingMain {
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+	align: center;
+	margin-top: -5px;
+}
+
+#nowToMax {
+	font-size: 20px;
+	margin-top: 5px;
+	margin-right: 3px;
+	margin-left: 3px;
+	padding-top: 4px;
+	padding-bottom: 3px;
+	background-color: #bbffff;
+	padding-left: 10px;
+	padding-right: 10px;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+#centerSettingFirst {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+	align: center;
+    clear: both;
+}
+
+#centerSetting {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+	align: center;
+	float: left;
+}
+
+.pagingLink {
+	display: block;
+	font-size: 20px;
+	margin-top: 5px;
+	margin-left: 2px;
+	margin-right: 2px;
+    text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.pagingLink:hover {
+	background-color: #00C5CD;
+}
+
+.pageNum {
+	display: block;
+	background-color: #dddddd;
+    text-align: center;
+	font-size: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 6px;
+	text-decoration: none;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.pageNum:hover {
+	background-color: #00C5CD;
+}
+
+#pageNum {
+	display: block;
+	background-color: #dddddd;
+	float: left;
+	font-size: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 23px;
+	text-decoration: none;
+}
+
+#pageNum:hover {
+	background-color: #00C5CD;
+}
+
+.pageNumSelect {
+	background-color: #00C5CD;
+	font-size: 20px;
+    text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 6px;
+	text-decoration: none;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+a {
+	text-decoration: none;
+}
+
+#loginUser {
+	margin-right: 10px;
+	margin-left: 15px;
+	margin-top: 15px;
+	margin-bottom: 0px;
+    text-align: left;
+    font-size: 15px;
+}
+
+#newUserText {
+	display: block;
+	float: left;
+	width: 180px;
+	height: 125px;
+	text-align: right;
+	align: center;
+	margin-bottom: 10px;
+	padding-top: 5px;
+	font-size: 25px;
+}
+
+#newUserForm {
+	display: block;
+	float: left;
+	width: 180px;
+	height: 120px;
+	text-align: left;
+	align: center;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+#loginTextBLK {
+	display: block;
+	float: left;
+	width: 180px;
+	height: 75px;
+	text-align: right;
+	align: center;
+	margin-bottom: 10px;
+	padding-top: 5px;
+	font-size:25px;
+}
+
+#loginIdText {
+	font-size: 25px;
+	margin-left: 40px;
+	padding-top: 6px;
+}
+
+#loginPassText {
+	margin-top: 10px;
+	font-size: 25px;
+}
+
+#loginFormBLK {
+	display: block;
+	float: left;
+	width: 180px;
+	height: 80px;
+	text-align: left;
+	align: center;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+#jumpButton {
+	position: fixed;  /* 位置を固定させます。 */
+	right: 20px;      /* 画面の右橋から20px空けます。 */
+	bottom: 20px;     /* 画面の下端から20px空けます。 */
+	cursor: pointer;
+	display: none;
+}
+
+.jumpButton {
+}
+
+.jumpButton:hover {
+}
+
+#canvasId {
+	position: fixed;
+	left: 30px;
+	bottom: 30px;
+	cursor: pointer;
+	
+	width: 64px;
+	height: 64px;
+}
+
+#canvasId2 {
+	position: fixed;
+	left: 94px;
+	bottom: 30px;
+	cursor: pointer;
+	
+	width: 64px;
+	height: 64px;
+	background-color: #ff0000;
+}

@@ -7,68 +7,98 @@
     
 <html>
 	<head>
-		<meta charset="utf-8">
-		<link href="<c:url value="/css/common.css" />" rel="stylesheet">
-		<link href="./css/font-awesome.css" rel="stylesheet">
-		<title>顧客管理システム</title>
-		<script src="<c:url value="/js/function.js" />" type="text/javascript"></script>
-		<script src="<c:url value="/js/jquery-2.1.4.min.js" />" type="text/javascript"></script>
+		<%@ include file="head_content.jsp" %>
 	</head> 
 	<body>
 		<header>
-			<div id="systemname">顧客管理アプリ</div>
-			<a href="TodayVisit" class="todayVisitLink"><i class="fa fa-automobile fa-icon"></i>本日の訪問先</a>
-			<a href="SearchPrint" class="searchPrintLink"><i class="fa fa-search fa-icon"></i>顧客データ検索／詳細</a>
-			<a href="Login" class="loginLink"><i class="fa fa-home fa-icon"></i>logout</a>
+			<%@ include file="header_content.jsp" %>
 		</header>
 		
+		<div id="loginUser">
+			<i class="fa fa-user fa-icon"></i><b>login: ${loginUser.name}</b> 
+		</div>
+
 		<div id="todayVisitListPrintText">
-			<c:if test="${searchList == null}" >
+			<c:if test="${pageInfo == null}" >
 				<i class="fa fa-search fa-icon"></i>顧客データ検索：0件
 			</c:if>
-			<c:if test="${searchList != null}" >
-				<i class="fa fa-search fa-icon"></i>顧客データ検索：<c:out value="${searchList.size()}"/>件
+			<c:if test="${pageInfo != null}" >
+				<i class="fa fa-search fa-icon"></i>顧客データ検索：<c:out value="${pageInfo.dataNum}"/>件
 			</c:if>
 		</div>
 		
 		<div id="searchFormMain">
 			<spring:url value="SearchPrint" var="action" />
-			<form:form modelAttribute="formSearch" action="${action}">
-			
-			<div id="searchInfoText">
-			契約番号<br>
-			契約者氏名<br>
-			契約期間<br>
-			住所<br>
-			郵便番号<br>
+		<form:form modelAttribute="formSearch" action="${action}" id="searchFormId">
+
+			<div id="textMargin1">
+				<div id="idText">契約番号</div>
+				<div id="idForm">
+					<form:input path="id" type="number" min="0" value="${oldFormData.id}" pattern="^[0-9]+$" title="※数字" />
+				</div>
 			</div>
-			
-			<div id="searchInfoForm">
-			<form:input path="id"/><br>
-			<form:input path="name"/><br>
-			<form:input path="period"/><br>
-			<form:input path="address"/><br>
-			<form:input path="postal"/><br>
+			<div id="textMargin1">
+				<div id="idText">契約者氏名</div>
+				<div id="idForm">
+					<form:input path="name" value="${oldFormData.name}" />
+					<br>
+				</div>
+			</div>
+			<div id="textMargin1">
+				<div id="idText">契約期間(月数)</div>
+				<div id="idForm">
+					<form:input path="period" type="number" min="0" maxlength="10"
+						value="${oldFormData.period}" pattern="^[0-9]+$" title="※数字" />
+					<br>
+				</div>
+			</div>
+			<div id="textMargin1">
+				<div id="idText">住所</div>
+				<div id="idForm">
+					<form:input path="address" value="${oldFormData.address}" />
+					<br>
+				</div>
+			</div>
+			<div id="textMargin1">
+				<div id="idText">郵便番号</div>
+				<div id="idForm">
+					<form:input path="postal" type="tel" maxlength="8"
+						value="${oldFormData.postal}" pattern="^[0-9-]+$" title="※数字とハイフン" />
+					<br>
+				</div>
 			</div>
 
 			<div id="searchButton">
 				<input type="submit" class="SearchButton" value="Search">
 			</div>
-			</form:form>
-		</div>
+
+		</form:form>
+	</div>
 		
-		<hr>
+		<c:if test="${pageInfo != null}" >
+		<c:if test="${pageInfo.dataNum != 0}" >
+
+		<br>
+		<br>
+		<div id="hrCenter"> <hr> </div>
 
 		<div id="searchListPrintMain">
-			<c:forEach var="obj" items="${searchList}" varStatus="status">
+			<c:forEach var="obj" items="${printList}" varStatus="status">
 				<div id="todayVisitContents">
-				<div id="searchVisitCustomerInfo">
-					<a href="CustomerDetail" class="TocustomerDetail">
+				<a href="CustomerDetail?id=${obj.id}" class="TocustomerDetail">
+					<div id="searchVisitCustomerInfo">
 					<div id="todayId"><c:out value="${obj.id}"/></div>
 					<div id="todayName"><c:out value="${obj.name}"/></div>
+					<c:if test="${obj.negotiateDay == null}" >
+						<div id="negotiateName"><c:out value="交渉履歴はありません"/></div>
+					</c:if>
+					<c:if test="${obj.negotiateDay != null}" >
+						<div id="negotiateName"><c:out value="担当営業: ${obj.negotiateName}"/></div>
+						<div id="negotiateDay"><c:out value="最新交渉日: ${obj.negotiateDay}"/></div>
+					</c:if>
 					<div id="todayAddress"><c:out value="${obj.address}"/></div>
-					</a>
-				</div>
+					</div>
+				</a>
 				<spring:url value="SearchUpdate" var="action" />
 				<form:form action="${action}">
 					<c:if test="${obj.isToday == 0}" >
@@ -83,6 +113,62 @@
 				</div>
 			</c:forEach>
 		</div>
+		
+		<div id="pagingContent">
+			<div id="pagingText">
+				${pageInfo.printStartDataIdx+1} - ${pageInfo.printEndDataIdx+1} of ${pageInfo.dataNum} results
+			</div>
+			<div id="pagingMain">
+				<c:if test="${5 < pageInfo.getMaxPage()}" >
+				<c:if test="${1 < pageInfo.nowPage}" >
+					<a href="SearchTarget?page=1" class="pagingLink"><i class="fa fa-angle-double-left fa-icon"></i></a>
+				<c:if test="${pageInfo.nowPage <= 1}" >
+					<a href="SearchTarget?page=1" class="pagingLink"><i class="fa fa-angle-left fa-icon"></i></a>
+				</c:if>
+				<c:if test="${pageInfo.nowPage > 1}" >
+					<a href="SearchTarget?page=${pageInfo.nowPage-1}" class="pagingLink"><i class="fa fa-angle-left fa-icon"></i></a>
+				</c:if>
+				</c:if>
+				</c:if>
+
+				<c:if test="${pageInfo.getMaxPage() != 1}" >
+				<div id="nowToMax">
+					${pageInfo.nowPage} to ${pageInfo.maxPage}
+				</div>
+
+				<c:forEach var="obj" items="${pageInfo.printPageList}" varStatus="status">
+				<c:if test="${obj == pageInfo.nowPage}" >
+					<a href="SearchTarget?page=${obj}" class="pageNumSelect">${obj}</a>
+				</c:if>
+
+				<c:if test="${obj != pageInfo.nowPage}" >
+					<a href="SearchTarget?page=${obj}" class="pageNum">${obj}</a>
+				</c:if>
+				</c:forEach>
+
+				<c:if test="${5 < pageInfo.getMaxPage()}" >
+				<c:if test="${pageInfo.nowPage != pageInfo.getMaxPage()}" >
+				<c:if test="${pageInfo.nowPage < pageInfo.getMaxPage()}" >
+					<a href="SearchTarget?page=${pageInfo.nowPage+1}" class="pagingLink"><i class="fa fa-angle-right fa-icon"></i></a>
+				</c:if>
+				<c:if test="${pageInfo.nowPage >= pageInfo.getMaxPage()}" >
+					<a href="SearchTarget?page=${pageInfo.getMaxPage()}" class="pagingLink"><i class="fa fa-angle-right fa-icon"></i></a>
+				</c:if>
+
+				<a href="SearchTarget?page=${pageInfo.getMaxPage()}" class="pagingLink"><i class="fa fa-angle-double-right fa-icon"></i></a>
+				</c:if>
+				</c:if>
+				</c:if>
+			</div>
+
+			<div id="jumpButton">
+			    <img src="./css/img/totop.png" width="32" height="32" alt="TOPに戻る" onclick="jumpToTop();" class="jumpButton"/>
+			</div>
 		</div>
+		</c:if>
+		</c:if>
+
+	    <div id="blankBottom">  </div>
+
 	</body>
 </html>

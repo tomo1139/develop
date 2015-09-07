@@ -7,32 +7,27 @@
     
 <html>
 	<head>
-		<meta charset="utf-8">
-		<link href="<c:url value="/css/common.css" />" rel="stylesheet">
-		<link href="./css/font-awesome.css" rel="stylesheet">
-		<link href="./css/jquery.datetimepicker.css" rel="stylesheet">
-		<title>顧客管理システム</title>
-		<script src="<c:url value="/js/function.js" />" type="text/javascript"></script>
-		<script src="<c:url value="/js/jquery-2.1.4.min.js" />" type="text/javascript"></script>
-  		<script src="<c:url value="/js/jquery.datetimepicker.js" />"  type="text/javascript"></script>
+		<%@ include file="head_content.jsp" %>
 	</head> 
 
-	<body>
+	<body onload="checkRegistInput();">
 		<header>
-			<div id="systemname">顧客管理アプリ</div>
-			<a href="TodayVisit" class="todayVisitLink"><i class="fa fa-automobile fa-icon"></i>本日の訪問先</a>
-			<a href="SearchPrint" class="searchPrintLink"><i class="fa fa-search fa-icon"></i>顧客データ検索／詳細</a>
-			<a href="Login" class="loginLink"><i class="fa fa-home fa-icon"></i>logout</a>
+			<%@ include file="header_content.jsp" %>
 		</header>
 
+		<div id="loginUser">
+			<i class="fa fa-user fa-icon"></i><b>login: ${loginUser.name}</b>
+		</div>
+
+
 		<div id="todayVisitListPrintText">
-			<i class="fa fa-search fa-icon"></i>交渉記録登録
+			<i class="fa fa-pencil fa-icon"></i>交渉記録登録
 		</div>
 
 		<div id="registItemBase">
 		<div id="registItemText"> ${customer.id} </div>
 		<div id="registItemText2">${customer.name}</div>
-		<div id="registItemText3">${customer.contract_date}</div>
+		<div id="registItemText3">契約期間 ${contractTerm}ヶ月</div>
 		</div>
 
 		<div id="detailContractContents">
@@ -49,16 +44,14 @@
 				</div>
 			
 				<spring:url value="CustomerDetail" var="action" />
-				<form:form modelAttribute="formRegist" action="${action}" name="registForm">
+				<form:form modelAttribute="formRegist" action="${action}" name="registForm" id="registNegoFormId">
 					<div id="registContractForm">
 
 					<div id="registContractInput"> 
-						<input id="datetime" type="text" name="datetime" value="${nowdatetime}">
+						<input id="datetime" type="datetime" name="datetime" value="${nowdatetime}" readonly>
 						<script>
 							$(function(){
-								$('#datetime').datetimepicker({
-									step:5
-								});
+								$('#datetime').datetimepicker({ step:1 });
 							});
 						</script>
 					</div>
@@ -88,15 +81,23 @@
 					</div>
 
 					<div id="registContractInput">
-						<form:textarea name="detail" path="detail" placeholder="input detail" cols="40" rows="7" resize="none" cssClass="detailformclass"/>
+						<form:textarea name="detail" path="detail" placeholder="input detail" cols="40" rows="6" style="overflow:auto;" maxlength="32" cssClass="detailformclass" onInput="checkRegistInput();" required="true" />
 					</div>
 
+					<div id="countDetailCharNum"></div>
+					<div id="registDetailErrMsgJS"></div>
+					<c:if test="${loginErrorMsg != null}" >
+						<div id="errorMsg">
+							<c:out value="${loginErrorMsg}"/>
+						</div>
+					</c:if>
+
 					</div>
-					<input type="submit" class="registButton" value="追加">
+					<input type="submit" class="registButton" value="追加" id="registButtonId" name="registButtonName">
 					<input type="hidden" name="id" value="${customer.id}">
 					<input type="hidden" name="todayId" value="${today.id}">
 					<input type="hidden" name="count" value="${count}">
-					<input type="button" class="clearButton" value="クリア" onClick="cancelRegist()">
+					<input type="button" class="clearButton" value="クリア" onClick="cancelRegist();checkRegistInput();" >
 				</form:form>
 
 

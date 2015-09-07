@@ -7,28 +7,24 @@
     
 <html>
 	<head>
-		<meta charset="utf-8">
-		<link href="<c:url value="/css/common.css" />" rel="stylesheet">
-		<link href="./css/font-awesome.css" rel="stylesheet">
-		<title>顧客管理システム</title>
-		<script src="<c:url value="/js/function.js" />" type="text/javascript"></script>
-		<script src="<c:url value="/js/jquery-2.1.4.min.js" />" type="text/javascript"></script>
+	<%@ include file="head_content.jsp" %>
 	</head> 
 	<body>
 		<header>
-			<div id="systemname">顧客管理アプリ</div>
-			<a href="TodayVisit" class="todayVisitLink"><i class="fa fa-automobile fa-icon"></i>本日の訪問先</a>
-			<a href="SearchPrint" class="searchPrintLink"><i class="fa fa-search fa-icon"></i>顧客データ検索／詳細</a>
-			<a href="Login" class="loginLink"><i class="fa fa-home fa-icon"></i>logout</a>
+			<%@ include file="header_content.jsp" %>
 		</header>
 
-		<div id="detailId"> <i class="fa fa-car fa-icon"></i><c:out value="${customer.id}"/> </div>
+		<div id="loginUser">
+			<i class="fa fa-user fa-icon"></i><b>login: ${loginUser.name}</b> 
+		</div>
+
+		<div id="detailId"> <i class="fa fa-user fa-icon-user"></i><c:out value="${customer.id}"/> </div>
 		<div id="detailName"> <c:out value="${customer.name}"/> </div>
-		<div id="detailNameSama"> 様: </div>
+		<div id="detailNameSama"><b> 様: </b></div>
 		
 		<div id="detailItem">
 		<div id="detailItemText"> 契約期間 </div>
-		<div id="detailItemData">10ヶ月</div>
+		<div id="detailItemData">${contractTerm}ヶ月</div>
 		</div>
 		
 		<div id="detailContractContents">
@@ -37,7 +33,11 @@
 
 		<div id="detailItem2">
 		<div id="detailItemText2"> 住所 </div>
-		<div id="detailItemData2"><c:out value="${customer.address}"/></div>
+		<div id="detailItemData2"><c:out value="${customer.address}"/>
+			<a href="javascript:void(0);" onClick="createMap('${customer.address}');">
+				<i class="fa fa-google fa-google-icon"></i>
+			</a>
+		</div>
 		</div>
 
 		<div id="detailItem2">
@@ -80,8 +80,29 @@
 		<div id="detailItemData2"><c:out value="${customer.payment_course}"/></div>
 		</div>
 		
+		<div id="customerDetailBtn">
+			<div id="editButton">
+				<spring:url value="UpdateCustomer" var="action" />
+				<form:form commandName="formAddCustomer" modelAttributes="formAddCustomer" action="${action}">
+					<form:hidden path="id" value="${customer.id}"/>
+					<form:hidden path="name" value="${customer.name}"/>
+					<form:hidden path="address" value="${customer.address}"/>
+					<form:hidden path="postal" value="${customer.postal}"/>
+					<form:hidden path="home_phone" value="${customer.home_phone}"/>
+					<form:hidden path="mobile_phone" value="${customer.mobile_phone}"/>
+					<form:hidden path="email" value="${customer.email}"/>
+					<form:hidden path="management_type" value="${customer.management_type}"/>
+					<form:hidden path="contract_date" value="${customer.contract_date}"/>
+					<form:hidden path="payment_method" value="${customer.payment_method}"/>
+					<form:hidden path="payment_course" value="${customer.payment_course}"/>
+					<input type="submit" class="eraseButton" value="編集">
+				</form:form>
+			</div>
+		</div>
+
 		<c:if test="${printNegoList.size()!=0}" >
-		<hr>
+
+		<div id="hrCenter"> <hr> </div>
 		
 		<div id="detailContractContents">
 		<div id="detailContractContentsText"> 交渉記録 </div>
@@ -89,9 +110,10 @@
 
 		<c:forEach var="obj" items="${printNegoList}" varStatus="status">
 
-		<c:if test="${obj != printNegoList.get(0)}" >
-		<hr class="hrsub">
-		</c:if>
+		<div id="detailItem2">
+		<div id="detailItemText2"> 登録者</div>
+		<div id="detailItemData2"><c:out value="${obj.userName}"/></div>
+		</div>
 
 		<div id="detailItem2">
 		<div id="detailItemText2"> 日付</div>
@@ -118,16 +140,90 @@
 		<div id="detailItemData2"><c:out value="${obj.result}"/></div>
 		</div>
 
-		<div id="detailItem2">
+		<div id="detailItem2Detail" style="height:${50+(obj.lineNum)*19}px;">
 		<div id="detailItemText2"> 交渉内容</div>
-		<div id="detailItemData2"><c:out value="${obj.detail}"/></div>
+		<div id="detailItemData2">${obj.detail}</div>
 		</div>
+
+		<c:if test="${obj.userId == loginUser.id}" >
+			
+			<div id="customerDetailBtn">
+				<div id="editButton">
+					<spring:url value="RegistNegotiateEdit" var="action" />
+					<form:form action="${action}">
+						<input type="hidden" name="id" value="${customer.id}">
+						<input type="hidden" name="date" value="${obj.date}">
+						<input type="hidden" name="time" value="${obj.time}">
+						<input type="hidden" name="method" value="${obj.method}">
+						<input type="hidden" name="opponent" value="${obj.opponent}">
+						<input type="hidden" name="result" value="${obj.result}">
+						<input type="hidden" name="detail" value="${obj.detail}">
+						<input type="hidden" name="negoId" value="${obj.negoId}">
+						<input type="submit" class="eraseButton" value="編集">
+					</form:form>
+				</div>
+			</div>
+		</c:if>
+
+		<div id="hrSub"> <hr> </div>
 
 		</c:forEach>
 
+		<div id="pagingContent2">
+			<div id="pagingText">
+				${pageInfo.printStartDataIdx+1} - ${pageInfo.printEndDataIdx+1} of ${pageInfo.dataNum} results
+			</div>
+			<c:if test="${pageInfo.maxPage != 1}" >
+				<div id="pagingMain">
+				<c:if test="${5 < pageInfo.getMaxPage()}" >
+				<c:if test="${1 < pageInfo.nowPage}" >
+					<a href="detailTarget?page=1" class="pagingLink"><i class="fa fa-angle-double-left fa-icon"></i></a>
+					<c:if test="${pageInfo.nowPage <= 1}" >
+						<a href="detailTarget?page=1" class="pagingLink"><i class="fa fa-angle-left fa-icon"></i></a>
+					</c:if>
+					<c:if test="${pageInfo.nowPage > 1}" >
+						<a href="detailTarget?page=${pageInfo.nowPage-1}" class="pagingLink"><i class="fa fa-angle-left fa-icon"></i></a>
+					</c:if>
+				</c:if>
+				</c:if>
+
+				<div id="nowToMax">
+					${pageInfo.nowPage} to ${pageInfo.maxPage}
+				</div>
+
+				<c:forEach var="obj" items="${pageInfo.printPageList}" varStatus="status">
+					<c:if test="${obj == pageInfo.nowPage}" >
+						<a href="detailTarget?page=${obj}" class="pageNumSelect">${obj}</a>
+					</c:if>
+
+					<c:if test="${obj != pageInfo.nowPage}" >
+						<a href="detailTarget?page=${obj}" class="pageNum">${obj}</a>
+					</c:if>
+				</c:forEach>
+
+				<c:if test="${5 < pageInfo.getMaxPage()}" >
+					<c:if test="${pageInfo.nowPage != pageInfo.getMaxPage()}" >
+						<c:if test="${pageInfo.nowPage < pageInfo.getMaxPage()}" >
+							<a href="detailTarget?page=${pageInfo.nowPage+1}" class="pagingLink"><i class="fa fa-angle-right fa-icon"></i></a>
+						</c:if>
+						<c:if test="${pageInfo.nowPage >= pageInfo.getMaxPage()}" >
+							<a href="detailTarget?page=${pageInfo.getMaxPage()}" class="pagingLink"><i class="fa fa-angle-right fa-icon"></i></a>
+						</c:if>
+						<a href="detailTarget?page=${pageInfo.getMaxPage()}" class="pagingLink"><i class="fa fa-angle-double-right fa-icon"></i></a>
+					</c:if>
+				</c:if>
+				</div>
+				
+			</c:if>
+		</div>
+
 	    </c:if>
 	    
-	    <div id="blankBottom"> &nbsp </div>
+		<div id="jumpButton">
+		    <img src="./css/img/totop.png" width="32" height="32" alt="TOPに戻る" onclick="jumpToTop();" class="jumpButton"/>
+		</div>
+				
+	    <div id="blankBottom">  </div>
 
 	</body>
 </html>
