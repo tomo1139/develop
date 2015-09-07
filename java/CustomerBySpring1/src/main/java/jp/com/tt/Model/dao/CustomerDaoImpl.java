@@ -23,6 +23,7 @@ public class CustomerDaoImpl implements CustomerDao<Customer> {
 	public Integer getNewestDataId() {
 		EntityManager manager = factory.createEntityManager();
 		Integer id = (Integer)manager.createQuery("select MAX(id) from Customer").getSingleResult();
+		manager.close();
 		return id;
 	}
 
@@ -61,8 +62,10 @@ public class CustomerDaoImpl implements CustomerDao<Customer> {
 			customer = (Customer)manager.createQuery("from Customer where id = " + id).getSingleResult();
 			
 		} catch(Exception e) {
+			manager.close();
 			throw new MyException();
 		}
+		manager.close();
 
 		return customer;
 	}
@@ -115,8 +118,10 @@ public class CustomerDaoImpl implements CustomerDao<Customer> {
 			Query query2 = manager.createQuery(sb2.toString());
 			retNum[0] = (Integer.parseInt(query2.getSingleResult().toString()));
 			
+			manager.close();
 			return list;
 		}
+		manager.close();
 		return null;
 	}
 

@@ -22,15 +22,23 @@ public class NegotiationDaoImpl implements NegotiationDao<Negotiation> {
 
 	public List<Negotiation> findByCustomerId(Integer id) {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		String sql = "from Negotiation where customer_id = :idStr";
 		Query query = manager.createQuery(sql).setParameter("idStr", id);
-		return (List<Negotiation>)(query.getResultList());
+		List<Negotiation> list = (List<Negotiation>)(query.getResultList());
+		transaction.commit();
+		manager.close();
+		return list;
 	}
 
 	public List<Negotiation> getAll() {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		Query query = manager.createQuery("from Negotiation");
 		List<Negotiation> list = query.getResultList();
+		transaction.commit();
 		manager.close();
 		return list;
 	}
@@ -47,12 +55,18 @@ public class NegotiationDaoImpl implements NegotiationDao<Negotiation> {
 	public Negotiation findById(int id) throws MyException {
 		EntityManager manager = factory.createEntityManager();
 		Negotiation negotiation = null;
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 
 		try {
 			negotiation = (Negotiation)manager.createQuery("from Negotiation where id = " + id).getSingleResult();
 		} catch (Exception e) {
+			transaction.commit();
+			manager.close();
 			throw new MyException();
 		}
+		transaction.commit();
+		manager.close();
 
 		return negotiation;
 	}

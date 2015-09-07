@@ -40,7 +40,9 @@ public class UserDaoImpl implements UserDao<User> {
 		EntityManager manager = factory.createEntityManager();
 		String sql = "from User where name = :nameStr";
 		Query query = manager.createQuery(sql).setParameter("nameStr", name);
-		return (List<User>)(query.getResultList());
+		List<User> list = (List<User>)(query.getResultList());
+		manager.close();
+		return list;
 	}
 
 	public User findById(int id) {

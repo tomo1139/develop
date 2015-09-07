@@ -21,43 +21,71 @@ public class TodayDaoImpl implements TodayDao<Today> {
 	
 	public List<Today> getUserid(Integer id) {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		String sql = "from Today where user_id = :idStr";
 		Query query = manager.createQuery(sql).setParameter("idStr", id);
-		return (List<Today>)(query.getResultList());
+		List<Today> list = (List<Today>)(query.getResultList());
+		transaction.commit();
+		manager.close();
+		return list;
 	}
 	
 	public List<Today> getUseridAndNotDay(Integer id, String date) {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		String sql = "from Today where user_id = :idStr AND date NOT LIKE :dateStr";
 		Query query = manager.createQuery(sql).setParameter("idStr", id).setParameter("dateStr", date+"%");
-		return (List<Today>)(query.getResultList());
+		List<Today> list = (List<Today>)(query.getResultList());
+		transaction.commit();
+		manager.close();
+		return list;
 	}
 	
 	public List<Today> getCustomeridAndDay(Integer id, String date) {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		String sql = "from Today where customer_id = :idStr AND date LIKE :dateStr";
 		Query query = manager.createQuery(sql).setParameter("idStr", id).setParameter("dateStr", date+"%");
-		return (List<Today>)(query.getResultList());
+		List<Today> list = (List<Today>)(query.getResultList());
+		transaction.commit();
+		manager.close();
+		return list;
 	}
 
 	public List<Today> getUseridAndDay(Integer id, String date) {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		String sql = "from Today where user_id = :idStr AND date LIKE :dateStr";
 		Query query = manager.createQuery(sql).setParameter("idStr", id).setParameter("dateStr", date+"%");
-		return (List<Today>)(query.getResultList());
+		List<Today> list = (List<Today>)(query.getResultList());
+		transaction.commit();
+		manager.close();
+		return list;
 	}
 
 	public List<Today> getNotSameDay(String date) {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		String sql = "from Today where date NOT LIKE :dateStr";
 		Query query = manager.createQuery(sql).setParameter("dateStr", date+"%");
-		return (List<Today>)(query.getResultList());
+		List<Today> list = (List<Today>)(query.getResultList());
+		transaction.commit();
+		manager.close();
+		return list;
 	}
 
 	public List<Today> getAll() {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		Query query = manager.createQuery("from Today");
 		List<Today> list = query.getResultList();
+		transaction.commit();
 		manager.close();
 		return list;
 	}
@@ -73,12 +101,18 @@ public class TodayDaoImpl implements TodayDao<Today> {
 
 	public Today findById(int id) throws MyException {
 		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		transaction.begin();
 		Today today = null;
 		try {
 			today = (Today)manager.createQuery("from Today where id = " + id).getSingleResult();
 		} catch(Exception e) {
+			transaction.commit();
+			manager.close();
 			throw new MyException();
 		}
+		manager.close();
+		transaction.commit();
 
 		return today;
 	}
