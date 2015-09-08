@@ -8,7 +8,7 @@
 	<head>
 	<%@ include file="head_content.jsp" %>
 	</head> 
-	<body onload="nowloadingOff(); createBomb('canvasId');">
+	<body onload="nowloadingOff(); createBomb('canvasId');" onUnload="nowloadingOff();">
 		<div id="loginloading">
 		</div>
 		<div id="loginContainer">

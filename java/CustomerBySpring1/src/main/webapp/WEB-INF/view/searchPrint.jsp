@@ -115,9 +115,7 @@
 		</div>
 		
 		<div id="pagingContent">
-			<div id="pagingText">
-				${pageInfo.printStartDataIdx+1} - ${pageInfo.printEndDataIdx+1} of ${pageInfo.dataNum} results
-			</div>
+			<div id="pagingText"> &nbsp </div>
 			<div id="pagingMain">
 				<c:if test="${5 < pageInfo.getMaxPage()}" >
 				<c:if test="${1 < pageInfo.nowPage}" >

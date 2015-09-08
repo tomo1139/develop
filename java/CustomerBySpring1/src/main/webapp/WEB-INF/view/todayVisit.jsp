@@ -9,7 +9,7 @@
 	<head>
 		<%@ include file="head_content.jsp" %>
 	</head> 
-	<body>
+	<body onload="nowloadingOff();" onUnload="nowloadingOff();">
 		<header>
 			<%@ include file="header_content.jsp" %>
 		</header>

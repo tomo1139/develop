@@ -53,6 +53,7 @@ public class Login {
 	
 	@RequestMapping(value = "/Login", method = RequestMethod.GET)
 	public String form(Model model, HttpSession session) {
+		System.out.println("GET");
 		FormLogin fm = new FormLogin();
 		model.addAttribute("formLogin", fm);
 		
@@ -73,6 +74,7 @@ public class Login {
 	@RequestMapping(value = "/Login", method = RequestMethod.POST)
 	public String form(@Valid @ModelAttribute FormLogin fm, BindingResult result, Model model, HttpSession session) throws NoSuchAlgorithmException {
 
+		System.out.println("POST");
 //		String hexString = DigestUtils.md5Hex("aaaa"); 
 //		System.out.println(hexString);
 		
