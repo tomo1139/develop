@@ -39,45 +39,52 @@
 			<div id="textMargin1">
 			<div id="idText">名前</div> 
 			<div id="idForm">
-				<form:input required="true" path="name" placeholder="テスト顧客"/><br>
+				<form:input required="true" path="name" maxlength="32" placeholder="テスト顧客"/><br>
 			</div>
 			</div>
 
 			<div id="textMargin1">
 			<div id="idText">住所</div> 
 			<div id="idForm">
-				<form:input required="true" path="address" placeholder="東京都○○区○○"/><br>
+				<form:input required="true" path="address" maxlength="32" placeholder="東京都○○区○○"/><br>
 			</div>
 			</div>
 			
 			<div id="textMargin1">
 			<div id="idText">郵便番号</div>
 			<div id="idForm">
-				<form:input required="true" path="postal" placeholder="000-0000" pattern="\d{3}-\d{4}" title="3桁の数字、ハイフン（-）、4桁の数字の順で入力して下さい" /><br>
+				<form:input onInput="checkEditCustomer()" required="true" path="postal" placeholder="000-0000" pattern="\d{3}-\d{4}" maxlength="8" title="3桁の数字、ハイフン（-）、4桁の数字の順で入力して下さい" /><br>
 			</div>
 			</div>
+
+			<div id="postalErrorJS"></div>
 		
 			<div id="textMargin1">
 			<div id="idText">電話番号</div>
 			<div id="idForm">
-				<form:input required="true" path="home_phone" placeholder="0011112222" pattern="\d{10}" title="10桁の数字で入力して下さい"/><br>
+				<form:input onInput="checkEditCustomer()" required="true" path="home_phone" placeholder="0011112222" pattern="\d{10}" maxlength="10" title="10桁の数字で入力して下さい"/><br>
 			</div>
 			</div>
 		
+			<div id="phoneErrorJS"></div>
+
 			<div id="textMargin1">
 			<div id="idText">携帯番号</div>
 			<div id="idForm">
-				<form:input required="true" path="mobile_phone" placeholder="00011112222" pattern="\d{11}" title="11桁の数字で入力して下さい"/><br>
+				<form:input onInput="checkEditCustomer()" required="true" path="mobile_phone" placeholder="00011112222" pattern="\d{11}" maxlength="11" title="11桁の数字で入力して下さい"/><br>
 			</div>
 			</div>
 		
+			<div id="mobileErrorJS"></div>
+
 			<div id="textMargin1">
 			<div id="idText">メールアドレス</div>
 			<div id="idForm">
-				<form:input required="true" path="email" placeholder="aaa@aaa.com" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9.]+$" title="正しいメールアドレスを入力して下さい"/><br>
+				<form:input onInput="checkEditCustomer()" required="true" path="email" placeholder="aaa@aaa.com" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9.]+$" title="正しいメールアドレスを入力して下さい"/><br>
 			</div>
 			</div>
 		
+			<div id="emailErrorJS"></div>
 		
 			<div id="textMargin1">
 			<div id="idText">契約種別</div>
@@ -89,7 +96,7 @@
 			<div id="textMargin1">
 			<div id="idText">契約日</div>
 			<div id="idForm">
-				<form:input pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" title="次の形式で入力して下さい。4桁の数字-2桁の数字-2桁の数字" type="datetime" id="contract_date" required="true" path="contract_date" readonly="true" value="${nowdatetime}"/><br>
+				<form:input pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" maxlength="10" title="次の形式で入力して下さい。4桁の数字-2桁の数字-2桁の数字" type="datetime" id="contract_date" required="true" path="contract_date" readonly="true" value="${nowdatetime}"/><br>
 				<script>
 					$(function(){
 						$.datepicker.regional['en'] = {

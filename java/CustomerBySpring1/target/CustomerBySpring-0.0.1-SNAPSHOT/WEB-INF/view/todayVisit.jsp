@@ -9,7 +9,7 @@
 	<head>
 		<%@ include file="head_content.jsp" %>
 	</head> 
-	<body>
+	<body onload="nowloadingOff();" onUnload="nowloadingOff();">
 		<header>
 			<%@ include file="header_content.jsp" %>
 		</header>
@@ -34,7 +34,7 @@
 						<div id="todayVisitContents">
 							<div id="todayVisitDeleteBtn">
 								<spring:url value="TodayDelete" var="action" />
-								<form:form modelAttribute="formDelete" action="${action}">
+								<form:form modelAttribute="formDelete" action="${action}" onSubmit="return confirmDelete();">
 									<input type="image" src="./css/img/minus.png" alt="送信する" class="todayVisitDelBtnCls">
 									<input type="hidden" name="deleteToday" value="${obj.todayPk}">
 								</form:form>
@@ -82,7 +82,7 @@
 						<div id="todayVisitContents">
 							<div id="todayVisitDeleteBtn">
 							<spring:url value="TodayDelete" var="action" />
-							<form:form modelAttribute="formDelete" action="${action}">
+							<form:form modelAttribute="formDelete" action="${action}" onSubmit="return confirmDelete();">
 								<input type="image" src="./css/img/minus.png" alt="送信する" class="todayVisitDelBtnCls">
 								<input type="hidden" name="deleteToday" value="${obj.todayPk}">
 							</form:form>

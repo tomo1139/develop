@@ -30,7 +30,7 @@
 		<div id="registItemText3">契約期間 ${contractTerm}ヶ月</div>
 		</div>
 
-		<div id="detailContractContents">
+		<div id="detailNegotiateContractContents">
 			<div id="detailContractContentsText"> 交渉記録追加</div>
 
 			<div id="registContractFormMain">
@@ -102,7 +102,9 @@
 
 
 			</div>
+			
+			<div id="blankBottom"></div>
 	    </div>
-
+	    
 	</body>
 </html>

@@ -17,7 +17,25 @@ function jumpToTop() {
 }
 
 function nowloading() {
-     $.blockUI({ overlayCSS: { backgroundColor: '#444' } }); 
+    var forms = document.getElementById("loginFormId");
+    var array = [];
+    for (var i = 0; i < forms.length; i++) {
+        var elem = forms.elements[i];
+        array.push(elem.name + '=' + elem.value);
+        if(elem.name == 'name') {
+        	if(elem.value.match(/^[a-zA-Z_]+$/)) {
+        	} else {
+        		return ;
+        	}
+        } else if(elem.name == 'pass') {
+        	if(elem.value.match(/^[0-9a-zA-Z_]+$/)) {
+        	} else {
+        		return ;
+        	}
+        }
+    }
+
+	$.blockUI({ overlayCSS: { backgroundColor: '#444' } }); 
 	/*
      $.blockUI(
     		 {
@@ -197,6 +215,16 @@ function checkRegistInput() {
     }
 }
 
+function confirmDelete() {
+	if(window.confirm('本当に削除してよろしいですか？')){
+		return true;
+	}
+	else{
+		return false;
+	}
+	return false;
+}
+
 function getAllCharNum(str) {
   	var lineNumMatch = str.match(/\r\n|\n/g);
     var removeNewLineStr = str.replace(/\r\n|\n/g, "");
@@ -274,6 +302,39 @@ function getElem(name) {
         	return elem;
         }
     }
+}
+
+function checkEditCustomer() {
+    var forms = document.getElementById("addCustomerId");
+    for (var i = 0; i < forms.length; i++) {
+        var elem = forms.elements[i];
+        if(elem.name == 'postal') {
+        	if(elem.value == '' || elem.value.match(/^\d{3}-\d{4}$/)) {
+        		document.getElementById("postalErrorJS").innerHTML = "";
+        	} else {
+        		document.getElementById("postalErrorJS").innerHTML = "3桁の数字、ハイフン（-）、4桁の数字の順で入力して下さい";
+        	}
+        } else if(elem.name == 'home_phone') {
+        	if(elem.value == '' || elem.value.match(/^\d{10}$/)) {
+        		document.getElementById("phoneErrorJS").innerHTML = "";
+        	} else {
+        		document.getElementById("phoneErrorJS").innerHTML = "10桁の数字で入力して下さい";
+        	}
+        } else if(elem.name == 'mobile_phone') {
+        	if(elem.value == '' || elem.value.match(/^\d{11}$/)) {
+        		document.getElementById("mobileErrorJS").innerHTML = "";
+        	} else {
+        		document.getElementById("mobileErrorJS").innerHTML = "11桁の数字で入力して下さい";
+        	}
+        } else if(elem.name == 'email') {
+        	if(elem.value == '' || elem.value.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9.]+$/)) {
+        		document.getElementById("emailErrorJS").innerHTML = "";
+        	} else {
+        		document.getElementById("emailErrorJS").innerHTML = "正しいメールアドレスを入力して下さい";
+        	}
+        }
+    }
+	
 }
 
 function checkLogin() {

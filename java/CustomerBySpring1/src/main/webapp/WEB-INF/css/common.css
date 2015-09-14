@@ -676,6 +676,26 @@ hr.hrsub {
 	font-size: 15px;
 }
 
+#postalErrorJS {
+	color: #ff0000;
+	margin-bottom: 5px;
+}
+
+#phoneErrorJS {
+	color: #ff0000;
+	margin-bottom: 5px;
+}
+
+#mobileErrorJS {
+	color: #ff0000;
+	margin-bottom: 5px;
+}
+
+#emailErrorJS {
+	color: #ff0000;
+	margin-bottom: 5px;
+}
+
 #newPassErrorJS {
 	color: #ff0000;
 	margin-top: 15px;

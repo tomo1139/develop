@@ -518,6 +518,20 @@ input.passformclass2 {
 	padding-left: 30px;
 }
 
+#detailNegotiateContractContents {
+	width: 900px;
+	text-align: left;
+	font-size:25px;
+	padding-top: 9px;
+	height: 50px;
+	background-color: #00C5CD;
+
+	align: center;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 15px;
+}
+
 #detailContractContents {
 	width: 900px;
 	text-align: left;
@@ -660,6 +674,26 @@ hr.hrsub {
 	color: #ff0000;
 	margin-top: 15px;
 	font-size: 15px;
+}
+
+#postalErrorJS {
+	color: #ff0000;
+	margin-bottom: 5px;
+}
+
+#phoneErrorJS {
+	color: #ff0000;
+	margin-bottom: 5px;
+}
+
+#mobileErrorJS {
+	color: #ff0000;
+	margin-bottom: 5px;
+}
+
+#emailErrorJS {
+	color: #ff0000;
+	margin-bottom: 5px;
 }
 
 #newPassErrorJS {
@@ -1115,6 +1149,8 @@ textarea {
 	height: 50px;
     margin-left: auto;
     margin-right: auto;
+	display: block;
+    clear: both;
 }
 
 #pagingContent {
