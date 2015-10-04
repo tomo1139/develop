@@ -43,7 +43,6 @@ map #7 :tabnew<ENTER>
 map #8 :TlistToggle<ENTER>
 map #9 :!ctags -R ./*<ENTER>
 "set cursorline
-"highlight CursorLine guibg=blue ctermbg=Blue
 "set nowrap
 "set guioptions+=b
 set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags
