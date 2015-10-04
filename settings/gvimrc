@@ -13,7 +13,6 @@ set number
 "map #5 :sp C:\cygwin\home\tomo\c\win_words<ENTER>
 syntax on
 set scrolloff=999
-"winpos 0 0
 set tabstop=4
 set shiftwidth=4
 "colorscheme default
