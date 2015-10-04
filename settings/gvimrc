@@ -8,8 +8,6 @@ set autoindent
 set errorbells
 "set vb t_tb=
 set number
-"set dictionary=C:\Cygwin\home\tomo\c\win_words
-"set complete=.,b,d,i,k,w
 "map #5 :sp C:\cygwin\home\tomo\c\win_words<ENTER>
 syntax on
 set scrolloff=999
