@@ -6,7 +6,6 @@ set nobackup
 set showmatch
 set autoindent
 set errorbells
-"set vb t_tb=
 set number
 "map #5 :sp C:\cygwin\home\tomo\c\win_words<ENTER>
 syntax on
