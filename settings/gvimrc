@@ -1,3 +1,4 @@
+"add master
 imap <C-j> <C-\><C-n>:w<ENTER>
 vmap <C-j> <C-\><C-n>:w<ENTER>
 set incsearch
