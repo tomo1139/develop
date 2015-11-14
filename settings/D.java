@@ -1,10 +1,8 @@
-package beta1139.splascorememo;
-
 import android.util.Log;
 
 public class D {
 	
-	public static final String TAG = "D";
+	public static final String TAG = "dbg";
 	
 	public static void p() {
 		p("");
