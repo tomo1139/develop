@@ -1,34 +1,49 @@
+
 import android.util.Log;
 
 public class D {
 	
-	public static final String TAG = "dbg";
+    public static final String TAG = "dbg";
 	
-	public static void p() {
-		p("");
-	}
-	
-	public static void p(Object arg) {
+    public static void sleep(long milliSeconds) {
+        D.p("", "sleep start");
+        try {
+            Thread.sleep(milliSeconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        D.p("", "sleep end");
+    }
+
+    public static void p(Object arg1, Object arg2) {
         StackTraceElement[] e = new Throwable().getStackTrace();
         String[] classNames = e[1].getClassName().split("\\.");
         String className = classNames[classNames.length-1];
         String classNameAndMethodName = className + " " + e[1].getMethodName() + "()";
-		Log.e(TAG, classNameAndMethodName + " >>> " + arg);
-	}
-	
-	public static void printStackTrace() {
-        Log.e(TAG, "========== printStackTrace ==========");
+        Log.e(TAG, arg1 + " " + classNameAndMethodName + " >>> " + arg2);
+    }
+
+    public static void printStackTrace() {
+        Log.e(TAG, "\n========== printStackTrace ==========");
         StackTraceElement[] e = new Throwable().getStackTrace();
         String s;
-        for( int i=1; i<e.length; ++i ) {
-        	String[] classNames = e[i].getClassName().split("\\.");
-        	String className = classNames[classNames.length-1];
+        for( int i=e.length-1; i>0; i-- ) {
+            String[] classNames = e[i].getClassName().split("\\.");
+            String className = classNames[classNames.length-1];
 
-        	s = "[" + e[i].getFileName() + "] "
-        			+ className + " "
-        			+ e[i].getMethodName() + "()";
+            s = "[" + e[i].getFileName() + " l." + e[i].getLineNumber() + "] "
+                    + e[i].getClassName() + " "
+                    + e[i].getMethodName() + "()";
             Log.e(TAG, s);
         }
-        Log.e(TAG, "=====================================");
-	}
+        Log.e(TAG, "=====================================\n\n");
+    }
+
+    private static long time = 0;
+    public static void onTimeStamp() {
+        long t = System.currentTimeMillis();
+        Log.e(TAG, t + " : " + (time == 0 ? 0 : t - time));
+        time = t;
+    }
 }
+
